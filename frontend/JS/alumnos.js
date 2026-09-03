@@ -172,7 +172,7 @@ function eliminarAlumno(id) {//elimina el alumno del localStorage y actualiza la
     mostraAlumnos(alumnosActualizados)//actualiza la tabla con el nuevo array de alumnos
     if (alumnoEditandoId === id){//si el alumno que se está editando es el mismo que se está eliminando, resetea el formulario y las variables de estado
         formulario.reset()
-        alumnoEditandoId = null
+        alumnoEditandoId = null//resetea las variables de estado
         btnGuardar.textContent = "Guardar alumno" //cambia el texto del botón principal a "Guardar Alumno"
     }
     mostrarMensaje("Alumno eliminado correctamente", "mje-exito")
@@ -201,15 +201,15 @@ listaAlumnos.addEventListener("click", (e) => {
 //Marca alumnoEditandoId = id → ahora el submit del formulario sabe que está en modo edición.
 //Muestra el botón "Cancelar" y cambia el texto del botón principal a "Actualizar Alumno".
 //.focus() pone el cursor en el campo de nombre, por comodidad.
-function editarAlumno(id) {
-    const alumnos = obtenerAlumnos()
-    const alumno = alumnos.find(alumno => alumno.id === id)
-    document.querySelector("#nombre").value = alumno.nombre;
-    document.querySelector("#carrera").value = alumno.carrera;
-    document.querySelector("#correo").value = alumno.correo;
+function editarAlumno(id) { 
+    const alumnos = obtenerAlumnos()//obtiene los alumnos del localStorage
+    const alumno = alumnos.find(alumno => alumno.id === id)//busca el alumno que se está editando en el array de alumnos
+    document.querySelector("#nombre").value = alumno.nombre;//rellena el formulario con los datos del alumno
+    document.querySelector("#carrera").value = alumno.carrera;//rellena el formulario con los datos del alumno
+    document.querySelector("#correo").value = alumno.correo;//rellena el formulario con los datos del alumno
 
     alumnoEditar = { //Guarda una copia de los datos del alumno para comparar después
-        nombre: alumno.nombre,
+        nombre: alumno.nombre,//Guarda una copia de los datos del alumno para comparar después
         carrera: alumno.carrera,
         correo: alumno.correo
     }
@@ -234,4 +234,4 @@ function cancelarEdicion(){
 btnCancelar.addEventListener("click", cancelarEdicion) //Si el usuario cancela la edición: limpia el formulario, resetea las variables de estado, vuelve el botón a su texto original y oculta "Cancelar" de nuevo
 
 const alumnos = obtenerAlumnos()//obtiene los alumnos del localStorage
-mostraAlumnos(alumnos)  //muestra los alumnos en la tabla
+mostraAlumnos(alumnos)  //muestra los alumnos en la tabla al cargar la página
