@@ -145,8 +145,10 @@
 // }
 // mostrarUsuario()
 
-async function prueba(){
-const respuesta = await fetch("https://jsonplaceholder.typicode.com/users")
-console.log(respuesta)
+async function prueba(){ //
+const respuesta = await fetch("https://jsonplaceholder.typicode.com/users")//fetch() devuelve una promesa que se resuelve con la respuesta de la solicitud HTTP
+console.log(respuesta)//la respuesta es un objeto Response que contiene información sobre la respuesta HTTP, como el estado, los encabezados y el cuerpo de la respuesta
+const datos = await respuesta.json()//json() devuelve una promesa que se resuelve con el cuerpo de la respuesta parseado como JSON
+console.log(datos)//los datos son un array de objetos que representan a los usuarios    
 }
-prueba()
+prueba()//
