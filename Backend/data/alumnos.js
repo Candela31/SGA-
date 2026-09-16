@@ -1,14 +1,19 @@
-const alumnos = [
-    {
-        id: 1,
-        nombre: "Ana",
-        carrera: "Programación"
-    },
-    {
-        id: 2,
-        nombre: "José",
-        carrera: "Sistemas"
-    }
-]
+const mongoose = require("mongoose")
 
-module.exports = alumnos
+const alumnoSchema = new mongoose.Schema({
+    legajo: {
+        type: Number,
+        unique: true
+    },
+    nombre: String,
+    carrera: String,
+    correo: String
+},
+{ 
+    versionKey: false
+}
+)
+
+const Alumno = mongoose.model("Alumno", alumnoSchema)
+
+module.exports = Alumno
