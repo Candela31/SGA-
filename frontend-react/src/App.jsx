@@ -1,24 +1,32 @@
-// import TamañoTexto from "./components/ejemplos/TamanioTexto";
-// import Incrementar from "./components/ejemplos/Incrementar";
-// import CambiarTitulo from "./components/ejemplos/CambiarTitulo";
-// import { Adivina } from "./components/ejemplos/Adivina";
-// import Mensaje from "./components/ejemplos/Mensaje";
-import FormularioA from "./components/FormularioA";
+import { ListaAlumnos } from "./components/ListaAlumnos"
+import { useState } from "react"
+import FormularioA from "./components/FormularioA"
 
+function App()
+{
+const [actualizar, setActualizar] = useState(0)
+const [alumnoEditar, setAlumnoEditar] = useState(null)
 
-
-function App() {
-  return (
-    <>
-      {/* <Incrementar />
-      <CambiarTitulo />
-      <Adivina />
-      <Mensaje />
-      <TamañoTexto /> */}
-      <FormularioA />
-      
-    </>
-  );
+function alumnoCreado() {
+  setActualizar(valor => valor + 1)
+  setAlumnoEditar(null)
 }
 
-export default App;
+function seleccionarAlumno(alumno) {
+  setAlumnoEditar(alumno)
+}
+
+return (
+   <main>
+   <FormularioA key={alumnoEditar?.legajo ?? "nuevo"}
+   onAlumnoCreado={alumnoCreado}
+   alumnoEditar={alumnoEditar}/>
+   <ListaAlumnos 
+   actualizar={actualizar} 
+   onAlumnoCreado={alumnoCreado}
+   onEditarAlumno={seleccionarAlumno}
+   />
+   </main>
+  )
+}
+export default App
