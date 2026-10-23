@@ -1,11 +1,11 @@
-// require("dotenv").config() 
+require("dotenv").config() 
 const PORT = 3000
 
 const express = require("express") 
 const cors = require("cors")
 
 const conectarDB = require("./config/database")
-const alumnosRoutes = require("./routes/alumnos.routers") 
+const alumnosRoutes = require("./router/alumnos.routers") 
 
 const app = express() 
 

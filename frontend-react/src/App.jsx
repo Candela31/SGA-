@@ -1,6 +1,8 @@
 import { ListaAlumnos } from "./components/ListaAlumnos"
 import { useState } from "react"
 import FormularioA from "./components/FormularioA"
+import {FAQ} from "./components/FAQ"
+import SelectorTema from "./components/SelectorTema"
 
 function App()
 {
@@ -18,6 +20,7 @@ function seleccionarAlumno(alumno) {
 
 return (
    <main>
+    <SelectorTema/>
    <FormularioA key={alumnoEditar?.legajo ?? "nuevo"}
    onAlumnoCreado={alumnoCreado}
    alumnoEditar={alumnoEditar}
@@ -28,7 +31,12 @@ return (
    onAlumnoCreado={alumnoCreado}
    onEditarAlumno={seleccionarAlumno}
    />
+  
+   <FAQ
+   
+   />
    </main>
   )
 }
 export default App
+
