@@ -1,0 +1,451 @@
+.page-main {
+    display: grid;
+    gap: 24px;
+    width: min(1040px, calc(100% - 40px));
+    margin: 32px auto 48px;
+}
+
+.inicio-card {
+    display: grid;
+    justify-items: start;
+    gap: 16px;
+    min-height: 260px;
+    align-content: center;
+    padding: clamp(24px, 6vw, 64px);
+    overflow: hidden;
+    border: 1px solid var(--mui-palette-divider, #ddd8cf);
+    border-radius: 24px;
+    background:
+        radial-gradient(circle at 90% 15%, color-mix(in srgb, var(--mui-palette-primary-main, #526d82) 18%, transparent), transparent 34%),
+        var(--mui-palette-background-paper, #fffcf7);
+    box-shadow: 0 16px 40px rgb(34 42 51 / 8%);
+}
+
+.inicio-card h1 {
+    max-width: 720px;
+    margin: 0;
+    color: var(--mui-palette-text-primary, #303841);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 750;
+    line-height: 1.08;
+    letter-spacing: -0.05em;
+}
+
+.inicio-card > p {
+    max-width: 620px;
+    margin: 0;
+    color: var(--mui-palette-text-secondary, #68737d);
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    line-height: 1.65;
+}
+
+.inicio-accesos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.inicio-accesos a {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 18px;
+    border-radius: 10px;
+    background: var(--mui-palette-primary-main, #526d82);
+    color: var(--mui-palette-primary-contrastText, #fff);
+    font-size: 0.92rem;
+    font-weight: 650;
+    text-decoration: none;
+    transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.inicio-accesos a:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgb(34 42 51 / 16%);
+}
+
+.inicio-accesos a:focus-visible {
+    outline: 3px solid var(--mui-palette-secondary-main, #d18b65);
+    outline-offset: 3px;
+}
+
+.page-main > .MuiBox-root {
+    justify-self: end;
+}
+
+.page-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    min-width: 0;
+}
+
+.page-toolbar > .MuiBox-root {
+    flex: 0 0 auto;
+}
+
+.formulario-card,
+.lista-card,
+.page-main .MuiPaper-root {
+    padding: clamp(20px, 3vw, 32px);
+    border: 1px solid var(--mui-palette-divider, #ddd8cf);
+    border-radius: 20px;
+    background: var(--mui-palette-background-paper, #fffcf7);
+    box-shadow: 0 12px 32px rgb(34 42 51 / 7%);
+    text-align: left;
+}
+
+.section-heading {
+    margin-bottom: 24px;
+}
+
+.section-eyebrow {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--mui-palette-primary-main, #526d82);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.section-heading h2 {
+    margin: 0;
+    color: var(--mui-palette-text-primary, #303841);
+    font-size: clamp(1.35rem, 3vw, 1.75rem);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+}
+
+.formulario-form {
+    display: grid;
+    gap: 20px;
+}
+
+.formulario-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.formulario-campo {
+    display: grid;
+    gap: 8px;
+    min-width: 0;
+}
+
+.formulario-campo label {
+    color: var(--mui-palette-text-primary, #303841);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.formulario-campo input {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 48px;
+    padding: 10px 14px;
+    border: 1px solid var(--mui-palette-divider, #ddd8cf);
+    border-radius: 10px;
+    outline: none;
+    background: var(--mui-palette-background-default, #f4f1eb);
+    color: var(--mui-palette-text-primary, #303841);
+    font: inherit;
+    transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.formulario-campo input:focus {
+    border-color: var(--mui-palette-primary-main, #526d82);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--mui-palette-primary-main, #526d82) 20%, transparent);
+}
+
+.formulario-acciones,
+.alumno-acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.formulario-acciones {
+    justify-content: flex-end;
+}
+
+.formulario-acciones button,
+.alumno-acciones button {
+    min-height: 42px;
+    padding: 9px 16px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 650;
+    transition: transform 160ms ease, background-color 160ms ease, box-shadow 160ms ease;
+}
+
+.formulario-acciones button:hover,
+.alumno-acciones button:hover {
+    transform: translateY(-1px);
+}
+
+.formulario-acciones button:focus-visible,
+.alumno-acciones button:focus-visible {
+    outline: 3px solid var(--mui-palette-primary-main, #526d82);
+    outline-offset: 2px;
+}
+
+.formulario-acciones button:disabled {
+    cursor: wait;
+    opacity: 0.65;
+    transform: none;
+}
+
+.button-primary {
+    background: var(--mui-palette-primary-main, #526d82);
+    color: var(--mui-palette-primary-contrastText, #fff);
+}
+
+.button-primary:hover {
+    box-shadow: 0 6px 16px rgb(34 42 51 / 15%);
+}
+
+.button-secondary {
+    border-color: var(--mui-palette-divider, #ddd8cf) !important;
+    background: transparent;
+    color: var(--mui-palette-text-primary, #303841);
+}
+
+.button-danger {
+    background: color-mix(in srgb, #ba3f45 12%, var(--mui-palette-background-paper, #fffcf7));
+    color: #ba3f45;
+}
+
+.formulario-error,
+.lista-error {
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: color-mix(in srgb, #ba3f45 10%, var(--mui-palette-background-paper, #fffcf7));
+    color: #ba3f45;
+}
+
+.lista-card {
+    min-width: 0;
+}
+
+.lista-alumnos {
+    display: grid;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.alumno-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 18px;
+    border: 1px solid var(--mui-palette-divider, #ddd8cf);
+    border-radius: 14px;
+    background: var(--mui-palette-background-default, #f4f1eb);
+}
+
+.alumno-datos {
+    display: grid;
+    gap: 4px;
+    min-width: 0;
+}
+
+.alumno-datos strong {
+    color: var(--mui-palette-text-primary, #303841);
+    font-size: 1.05rem;
+}
+
+.alumno-legajo,
+.alumno-carrera {
+    color: var(--mui-palette-text-secondary, #68737d);
+    font-size: 0.875rem;
+}
+
+.lista-estado,
+.lista-vacia {
+    padding: 18px 20px;
+    border: 1px solid var(--mui-palette-divider, #ddd8cf);
+    border-radius: 14px;
+    background: var(--mui-palette-background-paper, #fffcf7);
+    text-align: left;
+}
+
+.site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 16px max(24px, calc((100% - 1040px) / 2));
+    border-bottom: 1px solid var(--mui-palette-divider, #ddd8cf);
+    background: var(--mui-palette-background-paper, #fffcf7);
+}
+
+.site-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+    color: inherit;
+    text-decoration: none;
+}
+
+.site-brand img {
+    display: block;
+    width: 48px;
+    height: 48px;
+}
+
+.site-brand-copy {
+    display: grid;
+    gap: 1px;
+}
+
+.site-brand strong {
+    color: var(--mui-palette-text-primary, #303841);
+    font-size: 1.15rem;
+    line-height: 1.2;
+}
+
+.site-brand span {
+    color: var(--mui-palette-text-secondary, #68737d);
+    font-size: 0.78rem;
+}
+
+.site-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.site-nav a {
+    padding: 9px 12px;
+    border-radius: 9px;
+    color: var(--mui-palette-text-primary, #303841);
+    font-size: 0.92rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 160ms ease, color 160ms ease;
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible {
+    background: color-mix(in srgb, var(--mui-palette-primary-main, #526d82) 12%, transparent);
+    color: var(--mui-palette-primary-main, #526d82);
+}
+
+.site-nav a:focus-visible {
+    outline: 2px solid var(--mui-palette-primary-main, #526d82);
+    outline-offset: 2px;
+}
+
+.site-header .MuiBox-root {
+    flex: 0 0 auto;
+}
+
+.site-header .MuiSwitch-root {
+    margin: 0;
+}
+
+.site-footer {
+    margin-top: auto;
+    padding: 18px 24px;
+    border-top: 1px solid var(--mui-palette-divider, #ddd8cf);
+    color: var(--mui-palette-text-secondary, #68737d);
+    font-size: 0.82rem;
+    text-align: center;
+}
+
+@media (max-width: 700px) {
+    .page-main {
+        width: min(100% - 28px, 560px);
+        margin: 18px auto 32px;
+        gap: 16px;
+    }
+
+    .site-header {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 14px;
+        padding: 14px;
+    }
+
+    .page-toolbar {
+        gap: 12px;
+    }
+
+    .site-nav {
+        order: 3;
+        width: 100%;
+        justify-content: space-between;
+        border-top: 1px solid var(--mui-palette-divider, #ddd8cf);
+        padding-top: 8px;
+    }
+}
+
+@media (max-width: 520px) {
+    .formulario-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .alumno-item {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 14px;
+        padding: 15px;
+    }
+
+    .alumno-acciones {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .formulario-acciones {
+        justify-content: stretch;
+    }
+
+    .formulario-acciones button {
+        flex: 1;
+    }
+
+    .site-brand img {
+        width: 42px;
+        height: 42px;
+    }
+
+    .site-brand span {
+        font-size: 0.7rem;
+    }
+
+    .inicio-card {
+        min-height: 220px;
+        border-radius: 18px;
+    }
+
+    .inicio-accesos {
+        width: 100%;
+    }
+
+    .inicio-accesos a {
+        flex: 1 1 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}

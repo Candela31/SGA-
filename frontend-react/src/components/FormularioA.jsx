@@ -62,9 +62,14 @@ function FormularioA({ onAlumnoCreado, alumnoEditar, onCancelar }){
         onCancelar()
     }
     return(
-        <>
-        <h2>{alumnoEditar ? "Editar alumno" : "Nuevo Alumno"}</h2>
-        <form onSubmit={guardar}>
+        <section className="formulario-card">
+        <div className="section-heading">
+            <span className="section-eyebrow">Gestión académica</span>
+            <h2>{alumnoEditar ? "Editar alumno" : "Nuevo alumno"}</h2>
+        </div>
+        <form className="formulario-form" onSubmit={guardar}>
+            <div className="formulario-grid">
+            <div className="formulario-campo">
             <label htmlFor="legajo">Legajo</label>
             <input
             id="legajo"
@@ -73,6 +78,8 @@ function FormularioA({ onAlumnoCreado, alumnoEditar, onCancelar }){
             onChange={manejarCambio}
             required
             />
+            </div>
+            <div className="formulario-campo">
             <label htmlFor="nombre">Nombre</label>
             <input
             id="nombre"
@@ -81,6 +88,8 @@ function FormularioA({ onAlumnoCreado, alumnoEditar, onCancelar }){
             onChange={manejarCambio}
             required
             />
+            </div>
+            <div className="formulario-campo">
             <label htmlFor="carrera">Carrera</label>
             <input
             id="carrera"
@@ -89,6 +98,8 @@ function FormularioA({ onAlumnoCreado, alumnoEditar, onCancelar }){
             onChange={manejarCambio}
             required
             />
+            </div>
+            <div className="formulario-campo">
             <label htmlFor="correo">Correo</label>
             <input
             id="correo"
@@ -97,7 +108,10 @@ function FormularioA({ onAlumnoCreado, alumnoEditar, onCancelar }){
             onChange={manejarCambio}
             required
             />
-            <button type="submit" disabled={guardando}>
+            </div>
+            </div>
+            <div className="formulario-acciones">
+            <button className="button-primary" type="submit" disabled={guardando}>
                 {guardando 
                 ? "Guardando..." 
                 : alumnoEditar 
@@ -106,6 +120,7 @@ function FormularioA({ onAlumnoCreado, alumnoEditar, onCancelar }){
             </button>
             {alumnoEditar && (
                 <button
+                className="button-secondary"
                 type="button"
                 onClick={cancelar}
                 disabled={guardando}
@@ -113,10 +128,10 @@ function FormularioA({ onAlumnoCreado, alumnoEditar, onCancelar }){
                     Cancelar
                 </button>
             )}
-            <br />
-            {error && <p role="alert">{error}</p>}
+            </div>
+            {error && <p className="formulario-error" role="alert">{error}</p>}
         </form>
-        </>
+        </section>
     )
 }
 export default FormularioA

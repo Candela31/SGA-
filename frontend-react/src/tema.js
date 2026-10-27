@@ -1,51 +1,53 @@
-import { createTheme } from "@mui/material/styles";
+import { createTheme } from "@mui/material/styles"
 
 const tema = createTheme({
-  cssVariables: true,
-  colorSchemes: {
-    light: {
-      palette: {
-        primary: {
-          main: "#1976D2",
-          contrastText: "#FFFFFF",
-        },
-        secondary: {
-          main: "#9C27B0",
-          contrastText: "#FFFFFF",
-        },
-        background: {
-          default: "#FAFAFA",
-          paper: "#FFFFFF",
-        },
-        text: {
-          primary: "#212121",
-          secondary: "#616161",
-        },
-        divider: "#E0E0E0",
-      },
+    cssVariables: {
+        colorSchemeSelector: "class"
     },
-    dark: {
-      palette: {
-        primary: {
-          main: "#90CAF9",
-          contrastText: "#000000",
+    colorSchemes: {
+        light: {
+            palette: {
+                primary: {
+                    main: "#526D82",
+                    contrastText: "#FFFFFF"
+                },
+                secondary: {
+                    main: "#D18B65",
+                    contrastText: "#FFFFFF"
+                },
+                background: {
+                    default: "#F4F1EB",
+                    paper: "#FFFCF7"
+                },
+                text: {
+                    primary: "#303841",
+                    secondary: "#68737D"
+                },
+                divider: "#DDD8CF"
+            }
         },
-        secondary: {
-          main: "#CE93D8",
-          contrastText: "#000000",
-        },
-        background: {
-          default: "#121212",
-          paper: "#1E1E1E",
-        },
-        text: {
-          primary: "#FFFFFF",
-          secondary: "#B0B0B0",
-        },
-        divider: "#333333",
-      },
-    },
-  },
-});
+        dark: {
+            palette: {
+                primary: {
+                    main: "#9DBAD0",
+                    contrastText: "#17232D"
+                },
+                secondary: {
+                    main: "#E6AD8A",
+                    contrastText: "#30231D"
+                },
+                background: {
+                    default: "#171C22",
+                    paper: "#222A33"
+                },
+                text: {
+                    primary: "#F0F2F4",
+                    secondary: "#B5BEC7"
+                },
+                divider: "#414B56"
+            }
+        }
+    }
+})
 
-export default tema;
+export default tema

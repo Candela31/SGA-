@@ -49,33 +49,43 @@ export function ListaAlumnos({ actualizar, onAlumnoCreado, onEditarAlumno }) {
     }, [actualizar])
 
     if (cargando) {
-        return <p>Cargando alumnos...</p>
+        return <p className="lista-estado">Cargando alumnos...</p>
     }
     if (error) {
-        return <p role="alert">{error}</p>
+        return <p className="lista-estado lista-error" role="alert">{error}</p>
     }
     return (
-    <section>
-    <h2>Alumnos</h2>
+    <section className="lista-card">
+    <div className="section-heading">
+        <span className="section-eyebrow">Comunidad SGA</span>
+        <h2>Alumnos</h2>
+    </div>
     {alumnos.length === 0 
-    ? (<p>No hay alumnos registrados.</p>)
+    ? (<p className="lista-vacia">No hay alumnos registrados.</p>)
     : ( 
-        <ul style={{listStyle:"none"}}>
+        <ul className="lista-alumnos">
         {alumnos.map(alumno => (
-            <li key={alumno.legajo}>
-            {alumno.legajo} - {alumno.nombre} - {alumno.carrera}
-            <br />
+            <li className="alumno-item" key={alumno.legajo}>
+            <div className="alumno-datos">
+                <span className="alumno-legajo">Legajo {alumno.legajo}</span>
+                <strong>{alumno.nombre}</strong>
+                <span className="alumno-carrera">{alumno.carrera}</span>
+            </div>
+            <div className="alumno-acciones">
             <button
+            className="button-secondary"
             type="button"
             onClick={() => onEditarAlumno(alumno)}>
                 Editar
             </button>
             <button 
+            className="button-danger"
             type="button"
             onClick={()=> eliminarAlumno(alumno.legajo)}
             >
                 Eliminar
             </button>
+            </div>
         </li>)
     )}
     </ul>
