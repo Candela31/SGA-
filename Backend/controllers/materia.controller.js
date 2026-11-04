@@ -1,5 +1,5 @@
 const mongoose = require("mongoose")
-const Materia = require("../models/materia")
+const Materia = require("../models/Materia")
 
 function responderError(res, error) {
     if (error?.code === 11000) {
