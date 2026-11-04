@@ -109,7 +109,7 @@ export function ListaDocentes({ actualizar, onDocenteCreado, onEditarDocente }) 
                                     spacing={1.5}
                                     sx={{ alignItems: "center", flexWrap: "wrap" }}
                                 >
-                                    <Chip label={`Legajo ${docente.dni}`} color="primary" variant="outlined" size="small" />
+                                    <Chip label={`DNI ${docente.dni}`} color="primary" variant="outlined" size="small" />
                                     <Box>
                                         <Typography fontWeight={600}>{docente.nombre}</Typography>
                                         <Typography variant="body2" color="text.secondary">

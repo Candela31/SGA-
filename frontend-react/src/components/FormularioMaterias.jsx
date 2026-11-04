@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { obtenerMensajeError } from "../utils/errorMensajes";
+import { obtenerMensajeError, obtenerMensajeRespuesta } from "../utils/errorMensajes";
 
 const API_MATERIAS = "http://localhost:3000/materias"
 
@@ -26,16 +26,24 @@ function FormularioMaterias({ onMateriasCreada, materiasEditar, onCancelar }){
     async function guardar(e) {
         e.preventDefault()
         setError("")
+        const materia = {
+            ...formulario,
+            codigo: formulario.codigo.trim(),
+            nombre: formulario.nombre.trim(),
+            descripcion: formulario.descripcion.trim(),
+            cargaHoraria: Number(formulario.cargaHoraria)
+        }
+
+        if (!materia.codigo || !materia.nombre || !Number.isInteger(materia.cargaHoraria) || materia.cargaHoraria < 1) {
+            setError("Completá el código, el nombre y una carga horaria entera mayor que cero.")
+            return
+        }
+
         setGuardando(true)
-        
-    const materia = {
-        ...formulario,
-        cargaHoraria: Number(formulario.cargaHoraria)
-    }
-    const editando = Boolean(materiasEditar)
-    const url = editando 
-                ? `${API_MATERIAS}/${materiasEditar.codigo}`
-                : API_MATERIAS
+        const editando = Boolean(materiasEditar)
+        const url = editando
+            ? `${API_MATERIAS}/${encodeURIComponent(materiasEditar.codigo)}`
+            : API_MATERIAS
         try {
             const respuesta = await fetch(url, {
                 method: editando ? "PUT" : "POST",
@@ -44,7 +52,11 @@ function FormularioMaterias({ onMateriasCreada, materiasEditar, onCancelar }){
             })
 
             if (!respuesta.ok) {
-                throw new Error(`No se pudo guardar la materia. Estado HTTP: ${respuesta.status}`)
+                const mensaje = await obtenerMensajeRespuesta(
+                    respuesta,
+                    `No se pudo guardar la materia. Estado HTTP: ${respuesta.status}`
+                )
+                throw new Error(mensaje)
             }
 
             setFormulario({

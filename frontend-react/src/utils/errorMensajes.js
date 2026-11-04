@@ -17,3 +17,18 @@ export function obtenerMensajeError(error, fallback = "No se pudo conectar con e
 
   return mensajesNativos.has(mensaje) ? fallback : mensaje
 }
+
+export async function obtenerMensajeRespuesta(respuesta, fallback) {
+  try {
+    const datos = await respuesta.json()
+    return typeof datos?.mensaje === "string" && datos.mensaje.trim()
+      ? datos.mensaje
+      : fallback
+  } catch (error) {
+    if (error instanceof SyntaxError) {
+      return fallback
+    }
+
+    throw error
+  }
+}

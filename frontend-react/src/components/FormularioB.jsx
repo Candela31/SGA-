@@ -5,9 +5,9 @@ const API_DOCENTES = "http://localhost:3000/docentes"
 
 function FormularioB({ onDocentesCreado, docentesEditar, onCancelar }){
     const [formulario, setFormulario] = useState({
-        legajo: String(docentesEditar?.legajo ?? ""),
+        dni: String(docentesEditar?.dni ?? ""),
         nombre: docentesEditar?.nombre ?? "",
-        Especialidad: docentesEditar?.especialidad ?? "",
+        especialidad: docentesEditar?.especialidad ?? "",
         correo: docentesEditar?.correo ?? ""
     })
     const [error, setError] = useState("")
@@ -29,11 +29,14 @@ function FormularioB({ onDocentesCreado, docentesEditar, onCancelar }){
         
     const docentes = {
         ...formulario,
-        dni: Number(formulario.dni)
+        dni: Number(formulario.dni),
+        nombre: formulario.nombre.trim(),
+        especialidad: formulario.especialidad.trim(),
+        correo: formulario.correo.trim()
     }
     const editando = Boolean(docentesEditar)
     const url = editando 
-                ? `${API_DOCENTES}/${docentesEditar.legajo}`
+                ? `${API_DOCENTES}/${docentesEditar.dni}`
                 : API_DOCENTES
         try {
             const respuesta = await fetch(url, {
@@ -43,13 +46,13 @@ function FormularioB({ onDocentesCreado, docentesEditar, onCancelar }){
             })
 
             if (!respuesta.ok) {
-                throw new Error(`No se pudo guardar el alumno. Estado HTTP: ${respuesta.status}`)
+                throw new Error(`No se pudo guardar el docente. Estado HTTP: ${respuesta.status}`)
             }
 
             setFormulario({
-                DNI: "",
+                dni: "",
                 nombre: "",
-                carrera: "",
+                especialidad: "",
                 correo: ""
             })
             onDocentesCreado()
@@ -97,11 +100,11 @@ function FormularioB({ onDocentesCreado, docentesEditar, onCancelar }){
             />
             </div>
             <div className="formulario-campo">
-            <label htmlFor="carrera">Carrera</label>
+            <label htmlFor="especialidad">Especialidad</label>
             <input
-            id="carrera"
-            name="carrera"
-            value={formulario.carrera}
+            id="especialidad"
+            name="especialidad"
+            value={formulario.especialidad}
             onChange={manejarCambio}
             required
             />

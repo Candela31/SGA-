@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { obtenerMensajeError } from "../utils/errorMensajes"
+import { obtenerMensajeError, obtenerMensajeRespuesta } from "../utils/errorMensajes"
 
 const API_MATERIAS = "http://localhost:3000/materias"
 
@@ -14,11 +14,15 @@ export function ListaMaterias({ actualizar, onMateriasCreada, onEditarMaterias }
             return
         }
         try {
-            const respuesta = await fetch(`${API_MATERIAS}/${codigo}`, 
+            const respuesta = await fetch(`${API_MATERIAS}/${encodeURIComponent(codigo)}`,
                 { method: "DELETE" }
             )
             if (!respuesta.ok) {
-                throw new Error(`No se pudo eliminar. Estado HTTP: ${respuesta.status}`)
+                const mensaje = await obtenerMensajeRespuesta(
+                    respuesta,
+                    `No se pudo eliminar. Estado HTTP: ${respuesta.status}`
+                )
+                throw new Error(mensaje)
             }
             onMateriasCreada()
         } catch (error) {
@@ -40,7 +44,11 @@ export function ListaMaterias({ actualizar, onMateriasCreada, onEditarMaterias }
             const respuesta = await fetch(API_MATERIAS)
 
             if (!respuesta.ok){
-                throw new Error(`No se pudo obtener la lista. Estado HTTP: ${respuesta.status}`)
+                const mensaje = await obtenerMensajeRespuesta(
+                    respuesta,
+                    `No se pudo obtener la lista. Estado HTTP: ${respuesta.status}`
+                )
+                throw new Error(mensaje)
             }
 
             const datos = await respuesta.json()

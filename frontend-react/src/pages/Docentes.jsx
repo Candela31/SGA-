@@ -6,26 +6,26 @@ export default function Docentes() {
 const [actualizar, setActualizar] = useState(0)
 const [docentesEditar, setDocentesEditar] = useState(null)
 
-function docentesCreado() {
+function docenteGuardado() {
   setActualizar(valor => valor + 1)
   setDocentesEditar(null)
 }
 
-function seleccionarDocentes(docentes) {
-  setDocentesEditar(docentes)
+function seleccionarDocente(docente) {
+  setDocentesEditar(docente)
 }
 
 return (
    <>
    <FormularioB key={docentesEditar?.dni ?? "nuevo"}
-   onDocentesCreado={docentesCreado}
+   onDocentesCreado={docenteGuardado}
    docentesEditar={docentesEditar}
    onCancelar={() => setDocentesEditar(null)}
    />
    <ListaDocentes 
    actualizar={actualizar} 
-   onDocentesCreado={docentesCreado}
-   onEditarDocentes={seleccionarDocentes} 
+   onDocenteCreado={docenteGuardado}
+   onEditarDocente={seleccionarDocente} 
     /> 
   </>
   )
