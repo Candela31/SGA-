@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { obtenerMensajeError } from "../utils/errorMensajes";
+
 const API_ALUMNOS = "http://localhost:3000/alumnos"
 
 function FormularioA({ onAlumnoCreado, alumnoEditar, onCancelar }){
@@ -53,7 +55,12 @@ function FormularioA({ onAlumnoCreado, alumnoEditar, onCancelar }){
             onAlumnoCreado()
         } catch (error) {
             console.error("Error al guardar:", error)
-            setError(error.message || "No se pudo conectar con el servidor")
+            setError(
+                obtenerMensajeError(
+                    error,
+                    "No se pudo guardar el alumno. Verificá que el backend esté activo."
+                )
+            )
         } finally {
             setGuardando(false)
         }

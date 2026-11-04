@@ -89,7 +89,7 @@
 
 .formulario-card,
 .lista-card,
-.page-main .MuiPaper-root {
+.page-main > .MuiPaper-root {
     padding: clamp(20px, 3vw, 32px);
     border: 1px solid var(--mui-palette-divider, #ddd8cf);
     border-radius: 20px;
@@ -157,9 +157,44 @@
     transition: border-color 160ms ease, box-shadow 160ms ease;
 }
 
-.formulario-campo input:focus {
+.formulario-campo input:focus,
+.formulario-campo textarea:focus,
+.formulario-campo select:focus {
     border-color: var(--mui-palette-primary-main, #526d82);
     box-shadow: 0 0 0 3px color-mix(in srgb, var(--mui-palette-primary-main, #526d82) 20%, transparent);
+}
+
+.formulario-campo textarea,
+.formulario-campo select {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 48px;
+    padding: 10px 14px;
+    border: 1px solid var(--mui-palette-divider, #ddd8cf);
+    border-radius: 10px;
+    outline: none;
+    background: var(--mui-palette-background-default, #f4f1eb);
+    color: var(--mui-palette-text-primary, #303841);
+    font: inherit;
+    transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.formulario-campo textarea {
+    min-height: 116px;
+    resize: vertical;
+}
+
+.formulario-campo input::placeholder,
+.formulario-campo textarea::placeholder {
+    color: var(--mui-palette-text-secondary, #68737d);
+    opacity: 0.8;
+}
+
+.formulario-campo input:disabled,
+.formulario-campo textarea:disabled,
+.formulario-campo select:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
 }
 
 .formulario-acciones,
@@ -228,7 +263,19 @@
     padding: 12px 14px;
     border-radius: 10px;
     background: color-mix(in srgb, #ba3f45 10%, var(--mui-palette-background-paper, #fffcf7));
-    color: #ba3f45;
+    color: #a52e36;
+    line-height: 1.5;
+}
+
+.lista-estado,
+.lista-vacia {
+    margin: 0;
+    color: var(--mui-palette-text-secondary, #68737d);
+    line-height: 1.6;
+}
+
+.lista-estado.lista-error {
+    color: #a52e36;
 }
 
 .lista-card {
@@ -252,6 +299,13 @@
     border: 1px solid var(--mui-palette-divider, #ddd8cf);
     border-radius: 14px;
     background: var(--mui-palette-background-default, #f4f1eb);
+    transition: border-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+}
+
+.alumno-item:hover {
+    border-color: color-mix(in srgb, var(--mui-palette-primary-main, #526d82) 45%, var(--mui-palette-divider, #ddd8cf));
+    box-shadow: 0 8px 20px rgb(34 42 51 / 7%);
+    transform: translateY(-1px);
 }
 
 .alumno-datos {
@@ -365,6 +419,10 @@
     text-align: center;
 }
 
+.MuiAlert-root {
+    border-radius: 12px !important;
+}
+
 @media (max-width: 700px) {
     .page-main {
         width: min(100% - 28px, 560px);
@@ -390,12 +448,22 @@
         border-top: 1px solid var(--mui-palette-divider, #ddd8cf);
         padding-top: 8px;
     }
+
+    .formulario-card,
+    .lista-card,
+    .page-main > .MuiPaper-root {
+        border-radius: 17px;
+    }
 }
 
 @media (max-width: 520px) {
     .formulario-grid {
         grid-template-columns: 1fr;
         gap: 14px;
+    }
+
+    .section-heading {
+        margin-bottom: 20px;
     }
 
     .alumno-item {
@@ -405,9 +473,37 @@
         padding: 15px;
     }
 
+    .alumno-item:hover {
+        transform: none;
+    }
+
     .alumno-acciones {
         display: grid;
         grid-template-columns: 1fr 1fr;
+    }
+
+    @media (max-width: 360px) {
+        .page-main {
+            width: calc(100% - 20px);
+        }
+
+        .inicio-card {
+            padding: 18px;
+        }
+
+        .inicio-card h1 {
+            font-size: clamp(1.65rem, 8vw, 2rem);
+        }
+
+        .formulario-card,
+        .lista-card,
+        .page-main > .MuiPaper-root {
+            padding: 17px;
+        }
+
+        .alumno-acciones {
+            grid-template-columns: 1fr;
+        }
     }
 
     .formulario-acciones {
