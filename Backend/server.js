@@ -7,7 +7,7 @@ const cors = require("cors")
 const conectarDB = require("./config/database")
 const alumnosRoutes = require("./router/alumnos.routers") 
 const docentesRoutes = require("./router/docentes.routers")
-const materiasRoutes = require("./materias.Routers")
+const materiasRoutes = require("./router/materias.Routers")
 const authRoutes  = require("./router/authRouters")
 
 

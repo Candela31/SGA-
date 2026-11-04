@@ -6,7 +6,7 @@ const {
   crearMateria,
   actualizarMateria,
   eliminarMateria
-} = require("./controllers/materia.controller");
+} = require("../controllers/materia.controller");
 
 const router = express.Router();
 

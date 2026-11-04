@@ -1,13 +1,29 @@
 const Docente = require("../models/Docente")
 
+function obtenerDni(req, res) {
+    const dni = Number(req.params.dni)
+
+    if (!Number.isInteger(dni) || dni <= 0) {
+        res.status(404).json({
+            mensaje: "Docente no encontrado"
+        })
+        return null
+    }
+
+    return dni
+}
+
 async function obtenerDocentes(req, res) {
     const docentes = await Docente.find()
     res.json(docentes)
 }
 
 async function obtenerDocente(req, res) {
+    const dni = obtenerDni(req, res)
+    if (dni === null) return
+
     const docente = await Docente.findOne({
-        dni: Number(req.params.id)
+        dni
     })
 
     if (!docente) {
@@ -55,8 +71,11 @@ async function actualizarDocente(req, res) {
         })
     }
 
+    const dni = obtenerDni(req, res)
+    if (dni === null) return
+
     const docente = await Docente.findOneAndUpdate(
-        { dni: Number(req.params.id) }, // Busca el docente por su DNI
+        { dni }, // Busca el docente por su DNI
         { nombre, especialidad , correo },
         { returnDocument: "after", runValidators: true } //devuelve el documento actualizado y ejecuta validaciones
     )
@@ -71,8 +90,11 @@ async function actualizarDocente(req, res) {
 }
 
 async function eliminarDocente(req, res) {
+    const dni = obtenerDni(req, res)
+    if (dni === null) return
+
     const docente = await Docente.findOneAndDelete({
-        dni: Number(req.params.id)
+        dni
     })
 
     if (!docente) {
