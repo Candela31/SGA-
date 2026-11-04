@@ -1,0 +1,199 @@
+//materias consultas
+###  Consultar todas las materias cuando la colección está vacía. 
+GET http://localhost:3000/materias
+
+###  Registrar varias más y ver que aparezcan en el listado
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "codigo": "BD1",
+    "nombre": "Base de Datos 1",
+    "cargaHoraria": 64,
+    "estado": "activa"
+}
+
+### Consultar una por código
+GET http://localhost:3000/materias/PRG1
+
+
+### vonsultar un código inexistente y comprobar la respuesta del servidor.  ( 404)
+GET http://localhost:3000/materias/XXX99
+
+
+//pruebas de alta
+
+
+
+
+###registrar una materia con todos los datos válidos.
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "codigo": "PRG3",
+    "nombre": "Programación 3",
+    "descripcion": "Backend con Node",
+    "cargaHoraria": 80,
+    "estado": "inactiva"
+}
+
+
+### intentar registrar una materia sin código. (400)
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "nombre": "Sin código",
+    "cargaHoraria": 40,
+    "estado": "activa"
+}
+
+
+###  intentar registrar una materia sin nombre.  (400)
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "codigo": "SN1",
+    "cargaHoraria": 40,
+    "estado": "activa"
+}
+
+
+###  intentar registrar una materia sin carga horaria.  ( 400)
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "codigo": "SC1",
+    "nombre": "Sin carga",
+    "estado": "activa"
+}
+
+###ntentar registrar una materia con carga horaria igual a cero( 400)
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "codigo": "CH0",
+    "nombre": "Cargar hora igual a cero",
+    "cargaHoraria": 0,
+    "estado": "activa"
+}
+
+
+###  Carga horaria negativa ( 400)
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "codigo": "CHN",
+    "nombre": "Carga hora negativa",
+    "cargaHoraria": -10,
+    "estado": "activa"
+}
+
+
+###  Carga horaria decimal ( 400)
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "codigo": "CHD",
+    "nombre": "Carga decimal",
+    "cargaHoraria": 10.5,
+    "estado": "activa"
+}
+
+
+### Intentar registrar una materia con código duplicado ( 409)
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "codigo": "PRG1",
+    "nombre": "Otra materia",
+    "cargaHoraria": 50,
+    "estado": "activa"
+}
+
+
+
+### Intentar registrar una materia con un estado no permitido. ( 400)
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "codigo": "ESP1",
+    "nombre": "estado no permitido",
+    "cargaHoraria": 50,
+    "estado": " pendiente"
+}
+
+//pruebas de modificacion
+
+### Modificar el nombre y la descripción de una materia existente. ( 200)
+PUT http://localhost:3000/materias/PRG1
+Content-Type: application/json
+
+{   
+    "codigo": "PRG1",
+    "nombre": "Nombre modificado",
+    "descripcion": "Descripción modificada",
+    "cargaHoraria": 96,
+    "estado": "activa"
+}
+
+
+### Modificar su carga horaria y su estado. (200)
+PUT http://localhost:3000/materias/PRG1
+Content-Type: application/json
+
+{
+    "codigo": "PRG1",
+    "nombre": "Programación I",
+    "descripcion": "descripcionmodificada",
+    "cargaHoraria": 120,
+    "estado": "inactiva"
+}
+
+
+### Intentar modificar una materia inexistente. ( 404)
+PUT http://localhost:3000/materias/NOEXISTE
+Content-Type: application/json
+
+{
+    "codigo": "NOEXISTE",
+    "nombre": "Nada",
+    "cargaHoraria": 30,
+    "estado": "activa"
+}
+
+### Intentar cambiar el código por el de otra materia ya registrada. (409)
+PUT http://localhost:3000/materias/PRG1
+Content-Type: application/json
+
+{
+    "codigo": "BD1",
+    "nombre": "Programación I",
+    "cargaHoraria": 120,
+    "estado": "activa"
+}
+
+//Prueba de eliminacion
+
+###  Eliminar una materia existente  ( 200)
+DELETE http://localhost:3000/materias/PRG3
+
+
+    ###  Consultarde nuevo ( 404)
+GET http://localhost:3000/materias/PRG3
+
+
+### Intentar eliminar una materia inexistente. ( 404)
+DELETE http://localhost:3000/materias/PRG3
+
+
+###Comprobar que las operaciones posteriores reflejen los cambios realizados.  ( 200)
+GET http://localhost:3000/materias
