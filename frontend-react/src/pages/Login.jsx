@@ -1,8 +1,15 @@
 import {Alert, Box, Button, TextField, Typography } from "@mui/material"
 import { useTheme } from "@mui/material/styles" 
 import { useState } from "react"
+import {useAuth} from "../context/UseAuth"
+import { useNavigate } from "react-router-dom"
 
 export default function Login() {
+    const navigate = useNavigate()
+    const {setToken} = useAuth()
+
+
+
     const theme = useTheme()
     const [usuario, setUsuario] = useState(null)
 
@@ -32,11 +39,18 @@ export default function Login() {
             if (!respuesta.ok) {
                 throw new Error(datos.mensaje || "No se pudo iniciar sesión")
             }
+            localStorage.setItem("token", datos.token)
+            setToken(datos.token)
+
+
             setUsuario(datos.usuario)
             setMensaje(datos.mensaje)
 
+
             setEmail("")
             setPassword("")
+
+            navigate("/")
         } catch (error) {
             console.error("Error en login: ", error)
             setError(error.message || "No se pudo conectar con el servidor.")

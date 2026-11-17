@@ -6,12 +6,17 @@ import Chip from "@mui/material/Chip"
 import Paper from "@mui/material/Paper"
 import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
+import { useAuth } from "../context/UseAuth"
 const API_ALUMNOS = "http://localhost:3000/alumnos"
+
+
+
 
 export function ListaAlumnos({ actualizar, onAlumnoCreado, onEditarAlumno }) {
     const [alumnos, setAlumnos] = useState([])
     const [cargando, setCargando] = useState(true)
     const [error, setError] = useState("")
+    const { token } = useAuth()
 
     async function eliminarAlumno(legajo){
         const confirmar = window.confirm("¿Seguro que querés eliminar este alumno?")
@@ -19,8 +24,14 @@ export function ListaAlumnos({ actualizar, onAlumnoCreado, onEditarAlumno }) {
             return
         }
         try {
+           
             const respuesta = await fetch(`${API_ALUMNOS}/${legajo}`, 
-                { method: "DELETE" }
+                { method: "DELETE", headers: 
+                { 
+                    "Authorization": `Bearer ${token}` 
+                }
+             } 
+
             )
             if (!respuesta.ok) {
                 throw new Error(`No se pudo eliminar. Estado HTTP: ${respuesta.status}`)
@@ -37,7 +48,12 @@ export function ListaAlumnos({ actualizar, onAlumnoCreado, onEditarAlumno }) {
             setError("")
 
             try {
-            const respuesta = await fetch(API_ALUMNOS)
+            
+           
+            const respuesta = await fetch(API_ALUMNOS, {
+            headers: {
+                "Authorization" : `Bearer ${token}`
+            }})
 
             if (!respuesta.ok){
                 throw new Error("No se pudo obtener la lista", respuesta.status)

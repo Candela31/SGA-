@@ -4,7 +4,9 @@ import {Routes, Route} from "react-router-dom"
 import LayoutPpal from "./layouts/LayoutPpay"
 import Inicio from "./pages/Inicio"
 import Docentes from "./pages/Docentes"
-import Materias from "./pages/Materia"
+import Login from "./pages/Login"
+import Materia from "./pages/Materia"
+import RutaProtegida from "./components/RutaProtegida"  
 
 
 function App()
@@ -12,14 +14,17 @@ function App()
 
 return (
    <Routes>
-    <Route path="/" element={<LayoutPpal />}>
-    <Route index element={<Inicio />} />
-    <Route path="alumnos" element={<Alumnos />} />
-    <Route path="docentes" element={<Docentes />} />
-    <Route path="materias" element={<Materias />} />
-    <Route path="ayuda" element={<FAQ />} />
-    </Route>
-  </Routes>
+    <Route path="/login" element={<Login />} />
+     <Route element={<RutaProtegida />}>
+       <Route path="/" element={<LayoutPpal />}>
+          <Route index element={<Inicio />} />
+          <Route path="alumnos" element={<Alumnos />} />
+          <Route path="docentes" element={<Docentes />} />
+          <Route path="materias" element={<Materia />} />
+          <Route path="ayuda" element={<FAQ />} />
+          </Route>
+      </Route>
+    </Routes>
   )
 }
 export default App

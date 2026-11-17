@@ -4,8 +4,18 @@ import { Link as RouterLink, NavLink } from "react-router-dom"
 import SelectorTema from "./SelectorTema";
 import "../index.css"
 import "../styles/formulario.css"
+import { useNavigate } from "react-router-dom"
+import { useAuth } from "../context/UseAuth"
+import Button from "@mui/material/Button"
 
 export default function Header() {
+    const{ cerrarSesion } = useAuth()
+    const navigate = useNavigate()
+
+    const logout = () => {
+        cerrarSesion()
+        navigate("/login")
+    }
     return (
         <AppBar
             component="header"
@@ -162,6 +172,15 @@ export default function Header() {
                         >
                             <HelpOutlineRoundedIcon />
                         </IconButton>
+                        < Button
+                            type="button"
+                            color="inherit"
+                            variant="outlined"
+                            onClick={logout}
+                            sx={{ textTransform: "none", fontWeight: 600}}
+                        >   
+                            Cerrar sesión
+                        </Button>
                         <SelectorTema />
                     </Stack>
                 </Toolbar>

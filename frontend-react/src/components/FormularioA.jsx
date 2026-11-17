@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { obtenerMensajeError } from "../utils/errorMensajes";
+import { useAuth } from "../context/UseAuth";
 
 const API_ALUMNOS = "http://localhost:3000/alumnos"
 
 function FormularioA({ onAlumnoCreado, alumnoEditar, onCancelar }){
+   
     const [formulario, setFormulario] = useState({
         legajo: String(alumnoEditar?.legajo ?? ""),
         nombre: alumnoEditar?.nombre ?? "",
@@ -12,6 +14,7 @@ function FormularioA({ onAlumnoCreado, alumnoEditar, onCancelar }){
     })
     const [error, setError] = useState("")
     const [guardando, setGuardando] = useState(false)
+    const { token } = useAuth()
 
     function manejarCambio(e) {
         const { name, value} = e.target
@@ -36,9 +39,13 @@ function FormularioA({ onAlumnoCreado, alumnoEditar, onCancelar }){
                 ? `${API_ALUMNOS}/${alumnoEditar.legajo}`
                 : API_ALUMNOS
         try {
+            
             const respuesta = await fetch(url, {
                 method: editando ? "PUT" : "POST",
-                headers: {"Content-Type":"application/json"},
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
                 body: JSON.stringify(alumno)
             })
 
